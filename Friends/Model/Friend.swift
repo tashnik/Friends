@@ -28,10 +28,9 @@ struct Location: Decodable {
   let city: String
   let state: String
 //  let postcode: String
-//  let coordinates: Coordinate
+  let coordinates: Coordinate
   let timezone: Timezone
 }
-
 
 
 struct Login: Decodable {
@@ -70,9 +69,7 @@ struct Friend: Decodable, Identifiable {
   let id = UUID()
   let gender: String
   let name: Name
-  
   let location: Location
-
   let email: String
 //  let login: Login
 //  let dob: DateOfBirth

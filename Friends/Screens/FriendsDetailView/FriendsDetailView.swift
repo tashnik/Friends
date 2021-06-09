@@ -51,17 +51,19 @@ struct FriendsDetailView: View {
             self.showSheet.toggle()
           } else {
             self.showAlert.toggle()
-            print("Error sending email")
           }
         } label: {
           Text(friend.email)
             .font(.title3)
             .fontWeight(.semibold)
-            .frame(width: 330, height: 50)
+            .frame(width: 350, height: 50)
             .foregroundColor(.white)
             .background(Color.blue)
             .cornerRadius(10)
             .padding()
+        }
+        .alert(isPresented: $showAlert) {
+          Alert(title: Text("Error"), message: Text("Could not send email"), dismissButton: .default(Text("Try again later")))
         }
         
         Text(friend.cell)
@@ -73,7 +75,7 @@ struct FriendsDetailView: View {
         Spacer()
       }
       .padding()
-     
+      
     }
     .sheet(isPresented: $showSheet) {
       MailView(result: self.$result, newSubject: "Friends App", newMsgBody: "Found you on the Friends App", email: friend.email)
@@ -82,8 +84,8 @@ struct FriendsDetailView: View {
   }
 }
 
-struct FriendsDetailView_Previews: PreviewProvider {
-  static var previews: some View {
-    FriendsDetailView(friend: Friend(gender: "", name: Name(title: "", first: "David", last: "Potashnik"), location: Location(city: "", state: "", timezone: Timezone(offset: "", description: "")), email: "davidpotashnik@yahoo.com", cell: "732-310-0690", picture: Picture(large: "", medium: "", thumbnail: "")))
-  }
-}
+//struct FriendsDetailView_Previews: PreviewProvider {
+//  static var previews: some View {
+//    FriendsDetailView(friend: Friend(gender: "", name: Name(title: "", first: "David", last: "Potashnik"), location: Location(city: "", state: "", timezone: Timezone(offset: "", description: "")), email: "davidpotashnik@yahoo.com", cell: "732-310-0690", picture: Picture(large: "", medium: "", thumbnail: "")))
+//  }
+//}
